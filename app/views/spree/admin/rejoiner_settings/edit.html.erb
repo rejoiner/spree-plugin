@@ -1,0 +1,42 @@
+  <% content_for :page_title do %>
+  <%= Spree.t(:rejoiner_settings) %>
+<% end %>
+
+<%= form_tag admin_rejoiner_settings_path, method: :put do %>
+  <div id="rejoiner-settings" data-hook>
+    <fieldset class="general no-border-top">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1 class="panel-title">
+                <%= Spree.t(:rejoiner_site_settings) %>
+              </h1>
+            </div>
+
+            <div class="panel-body">
+              <% @site_settings.each do |key| 
+                type = Spree::Config.preference_type(key) %>
+                <div class="form-group">
+                  <%= label_tag key do %>
+                    <%= Spree.t(key) %>
+                  <% end %>
+                  <%= preference_field_tag(key, Spree::Config[key], type: type) %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-actions" data-hook="buttons">
+            <%= button Spree.t('actions.update'), 'save' %>
+            <span class="or"><%= Spree.t(:or) %></span>
+            <%= button_link_to Spree.t('actions.cancel'), edit_admin_rejoiner_settings_url, icon: 'delete' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+<% end %>

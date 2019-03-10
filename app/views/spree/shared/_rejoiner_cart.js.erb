@@ -1,0 +1,18 @@
+<script>
+  var _rejoiner = _rejoiner || [];
+
+  <% if @order.email.present? %>
+    _rejoiner.push(['setCustomerEmail', { email: '<%= @order.email %>'}])
+  <% end %>
+
+  <% if @order.line_items.empty? %>
+    _rejoiner.push(['clearCartData']);
+  <% else %>
+    _rejoiner.push(['setCartData', <%= get_rejoiner_cart_data(@order) %>]);
+
+    <% @order.line_items.each do |line_item| %>
+      <% product = line_item.variant.product %>
+        _rejoiner.push(['setCartItem', <%= get_rejoiner_product(product, image: product.images.first, item_qty: line_item.quantity) %>]);
+    <% end %>
+  <% end %>
+</script>

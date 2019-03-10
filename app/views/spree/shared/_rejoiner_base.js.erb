@@ -1,0 +1,14 @@
+<% if Spree::Rejoiner.active? %>
+  <script>
+    var _rejoiner = _rejoiner || [];
+    _rejoiner.push(['setAccount', '<%= Spree::Rejoiner.site_id %>']);
+    _rejoiner.push(['setDomain', '<%= Spree::Rejoiner.domain %>' || document.location.hostname]);
+    (function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://cdn.rejoiner.com/js/v4/rj2.lib.js';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    })();
+  </script>
+<% end %>

@@ -1,0 +1,8 @@
+en:
+  spree:
+    rejoiner_settings: Rejoiner Configuration
+    rejoiner_site_settings: Site Settings
+    rejoiner_active: Active
+    rejoiner_site_id: Site ID
+    rejoiner_domain: Domain
+    rejoiner_api_key: API Key

@@ -1,0 +1,18 @@
+<script>
+  var _rejoiner = _rejoiner || [];
+  var _rejoinerCartItems = [];
+
+  <% if @order.email.present? %>
+    _rejoiner.push(['setCustomerEmail', { email: '<%= @order.email %>'}])
+  <% end %>
+
+  <% @order.line_items.each do |line_item| %>
+      <% product = line_item.variant.product %>
+      _rejoinerCartItems.push(<%= get_rejoiner_product(product, image: product.images.first, item_qty: line_item.quantity) %>);
+    <% end %>
+
+  _rejoiner.push(['sendConversion', {
+    cart_data:  <%= get_rejoiner_cart_data(@order) %>,
+    cart_items: _rejoinerCartItems,
+  }]);
+</script>
