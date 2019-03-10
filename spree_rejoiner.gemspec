@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.homepage  = 'https://github.com/rejoiner/spree-plugin'
   s.license = 'BSD-3-Clause'
 
-  # s.files       = `git ls-files`.split("\n").reject { |f| f.match(/^spec/) && !f.match(/^spec\/fixtures/) }
+  s.files       = `git ls-files`.split("\n").reject { |f| f.match(/^spec/) && !f.match(/^spec\/fixtures/) }
   s.require_path = 'lib'
   s.requirements << 'none'
 
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'spree_extension'
+  s.add_dependency 'public_suffix'
 
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'awesome_print'
